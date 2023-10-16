@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GenericTreeDataStucture.h" />
     <ClInclude Include="GraphLibrary.h" />
     <ClInclude Include="Main.h" />
-    <ClInclude Include="TreeLibrary.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />

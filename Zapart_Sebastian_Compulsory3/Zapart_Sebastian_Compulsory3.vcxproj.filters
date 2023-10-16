@@ -18,10 +18,10 @@
     <ClInclude Include="Main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TreeLibrary.h">
+    <ClInclude Include="GraphLibrary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GraphLibrary.h">
+    <ClInclude Include="GenericTreeDataStucture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
