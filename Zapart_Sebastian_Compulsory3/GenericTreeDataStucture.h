@@ -1,5 +1,5 @@
 #pragma once
-#include <vector>
+#include <list>
 
 class GenericTree
 {
@@ -19,15 +19,15 @@ public:
 	struct Node
 	{
 		int data;
-		std::vector<Node*> child;
+		std::list<Node*> child;
 	};
 
 	//---------------------  Variables  ---------------------
 
 	/**
-	 * \brief Vector containing a dynamic amount of trees. 
+	 * \brief Vector containing a dynamic amount of trees.
 	 */
-	std::vector<Node*> Tree;
+	std::list<Node*> Tree;
 
 	/**
 	 * \brief Common Data for all root nodes
@@ -41,11 +41,39 @@ public:
 	 * \param data Data the new Node is to hold
 	 * \return returns the new node created
 	 */
-	Node* CreateNode(int data)
+	Node* CreateNode(const int data)
 	{
 		Node* NewNode = new Node();
 		NewNode->data = data;
 		return NewNode;
+	}
+
+	/**
+	 * \brief Creates a test tree using the constructed root
+	 */
+	void CreateTestTree()
+	{
+		/*		The tree to create
+		*              -1
+		*         /  /    \     \
+		*        1  2      3      4
+		*       / \        |   /  | \
+		*      5   6       7   8  9  10
+		*/
+
+		//if (Tree.front()->child.front() =) return;
+
+		// root 1
+		Tree.front()->child.push_back(CreateNode(1));
+		Tree.front()->child.front()->child.push_back(CreateNode(5));
+		Tree.front()->child.front()->child.push_back(CreateNode(6));
+		Tree.front()->child.push_back(CreateNode(2));
+		Tree.front()->child.push_back(CreateNode(3));
+		Tree.front()->child.back()->child.push_back(CreateNode(7));
+		Tree.front()->child.push_back(CreateNode(4));
+		Tree.front()->child.back()->child.push_back(CreateNode(8));
+		Tree.front()->child.back()->child.push_back(CreateNode(9));
+		Tree.front()->child.back()->child.push_back(CreateNode(10));
 	}
 
 	/**
@@ -57,11 +85,9 @@ public:
 		if (root == nullptr) return;
 
 		std::cout << root->data << " ";
-		for (int i = 0; i < root->child.size(); i++)
-		{
-			DepthFirstPrintTree(root->child[i]);
+		for (auto it = root->child.begin(); it != root->child.end(); ++it) {
+			DepthFirstPrintTree(*it);
 		}
-	
 	}
 
 	/**
@@ -72,7 +98,7 @@ public:
 	{
 		if (root == nullptr) return;
 
-		std::vector<Node*> TempChildren;
+		std::list<Node*> TempChildren;
 		TempChildren.push_back(root);
 
 		while (!TempChildren.empty())
@@ -85,9 +111,8 @@ public:
 				TempChildren.erase(TempChildren.begin());
 				std::cout << p->data << " ";
 
-				for (int i = 0; i < p->child.size(); i++)
-				{
-					TempChildren.push_back(p->child[i]);
+				for (auto it = p->child.begin(); it != p->child.end(); ++it) {
+					TempChildren.push_back(*it);
 				}
 				n--;
 			}
@@ -97,7 +122,9 @@ public:
 
 	Node* GetRoot()
 	{
-		
+
+
+
 	}
 
 	Node* GetParent()
@@ -105,12 +132,17 @@ public:
 		
 	}
 
-	std::vector<Node*> GetChildren()
+	std::list<Node*> GetChildren()
 	{
 		
 	}
 
 	int GetSize()
+	{
+		
+	}
+
+	int GetDepth()
 	{
 		
 	}

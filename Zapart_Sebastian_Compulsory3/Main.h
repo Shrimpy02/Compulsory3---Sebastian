@@ -18,18 +18,6 @@ public:
 	shared_ptr<GraphLibrary> Graph = make_shared<GraphLibrary>();
 
 	/**
-	 * \brief Creates a hardcoded 
-	 */
-	void CreateExampleTree();
-
-	/**
-	 * \brief prints a hardcoded example tree
-	 */
-	void printExampleTree();
-
-
-
-	/**
 	 * \brief prints the given input
 	 * \param string the string to print
 	 */
