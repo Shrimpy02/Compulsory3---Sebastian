@@ -21,7 +21,7 @@
     <ClInclude Include="GraphLibrary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GenericTreeDataStucture.h">
+    <ClInclude Include="GenericTreeDataStructure_list.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
