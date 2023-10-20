@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "GraphLibrary.h"
-#include "GenericTreeDataStructure_list.h"
+#include "GenericTreeDataStructure.h"
 
 using namespace std;
 
@@ -13,16 +13,18 @@ public:
 
 	CompMain();
 
-	shared_ptr<GenericTreeList>	GT_list_ptr = make_shared<GenericTreeList>();
+	shared_ptr<GenericTree>	GT_ptr = make_shared<GenericTree>();
 
-	//shared_ptr<GenericTreeVector>	GT_vector_ptr = make_shared<GenericTreeVector>();
-	
-	shared_ptr<GraphLibrary> Graph = make_shared<GraphLibrary>();
+	const int vertices = 6;
+
+	shared_ptr<AdjacencyGraph> AG_ptr = make_shared<AdjacencyGraph>(vertices);
 
 	/**
 	 * \brief Tests the generic tree that uses lists.
 	 */
-	void TestGenericTreeUsingLists();
+	void TestGenericTree();
+
+	void TestAdjacencyGraph();
 
 	/**
 	 * \brief prints the given input

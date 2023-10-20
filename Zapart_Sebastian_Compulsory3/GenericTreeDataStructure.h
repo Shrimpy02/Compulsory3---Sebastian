@@ -1,15 +1,15 @@
 #pragma once
 #include <iostream>
-#include <list>
+#include <vector>
 
-class GenericTreeList
+class GenericTree
 {
 public:
 	//--------------------- Class initialization ---------------------
 	/**
 	 * \brief Constructor creates the root for the first of the tree Arrays.
 	 */
-	GenericTreeList()
+	GenericTree()
 	{
 		// Initialize root node with no parent and rootData = -1
 		Tree.push_back(CreateNode(rootData, nullptr));
@@ -21,7 +21,7 @@ public:
 	struct Node
 	{
 		int data;
-		std::list<Node*> child;
+		std::vector<Node*> child;
 		Node* Parent;
 	};
 
@@ -30,7 +30,7 @@ public:
 	/**
 	 * \brief Vector containing a dynamic amount of trees.
 	 */
-	std::list<Node*> Tree;
+	std::vector<Node*> Tree;
 
 	/**
 	 * \brief Common Data for all root nodes.
@@ -38,6 +38,7 @@ public:
 	const int rootData = -1;
 
 	//---------------------  Test Functions  ---------------------
+
 
 	/**
 	 * \brief Creates a test tree using the constructed root
@@ -52,28 +53,33 @@ public:
 		*      5   6       7   8  9  10
 		*/
 
-		// The tree above created as a list of lists.
-		Tree.front()->child.push_back(CreateNode(1, Tree.front()));
-		Tree.front()->child.front()->child.push_back(CreateNode(5, Tree.front()->child.front()));
-		Tree.front()->child.front()->child.push_back(CreateNode(6, Tree.front()->child.front()));
-		Tree.front()->child.push_back(CreateNode(2, Tree.front()));
-		Tree.front()->child.push_back(CreateNode(3, Tree.front()));
-		Tree.front()->child.back()->child.push_back(CreateNode(7, Tree.front()->child.back()));
-		Tree.front()->child.push_back(CreateNode(4, Tree.front()));
-		Tree.front()->child.back()->child.push_back(CreateNode(8, Tree.front()->child.back()));
-		Tree.front()->child.back()->child.push_back(CreateNode(9, Tree.front()->child.back()));
-		Tree.front()->child.back()->child.push_back(CreateNode(10, Tree.front()->child.back()));
+		// Lvl 0 - root
+		// constructed
+
+		// Lvl 1
+		Tree[0]->child.push_back(CreateNode(1, Tree[0]));
+		Tree[0]->child.push_back(CreateNode(2, Tree[0]));
+		Tree[0]->child.push_back(CreateNode(3, Tree[0]));
+		Tree[0]->child.push_back(CreateNode(4, Tree[0]));
+
+		// Lvl 2
+		Tree[0]->child[0]->child.push_back(CreateNode(5, Tree[0]->child[0]));
+		Tree[0]->child[0]->child.push_back(CreateNode(6, Tree[0]->child[0]));
+		Tree[0]->child[2]->child.push_back(CreateNode(7, Tree[0]->child[2]));
+		Tree[0]->child[3]->child.push_back(CreateNode(8, Tree[0]->child[3]));
+		Tree[0]->child[3]->child.push_back(CreateNode(9, Tree[0]->child[3]));
+		Tree[0]->child[3]->child.push_back(CreateNode(10, Tree[0]->child[3]));
 	}
 
 	/**
 	 * \brief tests the GetChildren function and prints all children data to the console.
-	 * \param TempGetChildren the list of children to test on.
+	 * \param TempGetChildren the vector of children to test on.
 	 */
-	void testGetChildren(std::list<Node*> TempGetChildren)
+	void testGetChildren(std::vector<Node*> TempGetChildren)
 	{
-		// gets and outputs to the console all the children of the given list.
-		for (auto it = TempGetChildren.begin(); it != TempGetChildren.end(); ++it) {
-			std::cout << (*it)->data << ", ";
+		// gets and outputs to the console all the children of the given vector.
+		for (int i = 0; i > TempGetChildren.size(); i++) {
+			std::cout << TempGetChildren[i]->data << ", ";
 		}
 	}
 
@@ -136,7 +142,6 @@ public:
 
 		// Calls delete children to remove the current node and its children from memory
 		DeleteChildren(root);
-
 	}
 
 private:
@@ -153,7 +158,7 @@ private:
 			DeleteChildren(*it);
 		}
 
-		// Clear the child list
+		// Clear the child vector
 		root->child.clear();
 
 		// delete the input node
@@ -184,8 +189,8 @@ public:
 	{
 		if (root == nullptr) return;
 
-		// Create a list of temp children to remember whom to print
-		std::list<Node*> TempChildren;
+		// Create a vector of temp children to remember whom to print
+		std::vector<Node*> TempChildren;
 		TempChildren.push_back(root);
 
 		// works while there are temp children 
@@ -195,12 +200,12 @@ public:
 
 			while (n > 0)
 			{
-				Node* p = TempChildren.front();
-				// deletes the first element of the list
+				Node* p = TempChildren[0];
+				// deletes the first element of the vector
 				TempChildren.erase(TempChildren.begin());
 				std::cout << p->data << " ";
 
-				// push back on the list per iteration.
+				// push back on the vector per iteration.
 				for (auto it = p->child.begin(); it != p->child.end(); ++it) {
 					TempChildren.push_back(*it);
 				}
@@ -252,11 +257,11 @@ public:
 	}
 
 	/**
-	 * \brief Gets the list of children from the input node.
+	 * \brief Gets the vector of children from the input node.
 	 * \param root The node you want the children from.
-	 * \return Returns the list of children the node has.
+	 * \return Returns the vector of children the node has.
 	 */
-	std::list<Node*> GetChildren(Node* root)
+	std::vector<Node*> GetChildren(Node* root)
 	{
 		return root->child;
 	}
@@ -299,7 +304,7 @@ public:
 	/**
 	 * \brief Gets the data of the input node.
 	 * \param root The node you want the data from.
-	 * \return Returns the data as int.
+	 * \return Returns the data as int. 
 	 */
 	int GetNodeData(Node* root)
 	{
