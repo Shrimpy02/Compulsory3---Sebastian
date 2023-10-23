@@ -13,8 +13,9 @@ public:
 			AdjacentNodes[i] = NULL;
 	}
 
-	struct AdjNode
+	class AdjNode
 	{
+	public:
 		int vertex;
 		AdjNode* next;
 		AdjNode(int data) {

@@ -4,10 +4,10 @@
 
 using namespace std;
 
-int main()
-{
-	CompMain();
-}
+//int main()
+//{
+//	CompMain();
+//}
 
 CompMain::CompMain()
 {
@@ -142,7 +142,7 @@ void CompMain::TestGenericTree()
 
 void CompMain::TestAdjacencyGraph()
 {
-	printInt(AG_ptr->Graphes[0]->data);
+	//printInt(AG_ptr->Graphes[0]->data);
 
 	// create edge
 		// creats a new node linked to 
