@@ -1,25 +1,10 @@
 #pragma once
 #include <vector>
 
-
-class AdjNode
-{
-public:
-	int vertex;
-	AdjNode* next;
-	AdjNode(int data) {
-		vertex = data;
-		next = NULL;
-	}
-};
-
 class AdjacencyGraph
 {
-private:
-	int v;
-	AdjNode** AdjacentNodes;
-
 public:
+	//--------------------- Class initialization ---------------------
 
 	AdjacencyGraph(int vertices) {
 		v = vertices;
@@ -27,6 +12,41 @@ public:
 		for (int i = 0; i < v; ++i)
 			AdjacentNodes[i] = NULL;
 	}
+
+	struct AdjNode
+	{
+		int vertex;
+		AdjNode* next;
+		AdjNode(int data) {
+			vertex = data;
+			next = NULL;
+		}
+	};
+
+	//---------------------  Variables  ---------------------
+
+	int v;
+
+	AdjNode** AdjacentNodes;
+
+
+
+	//---------------------  Test Functions  ---------------------
+
+		// Function to print the graph
+	void printGraph() {
+		for (int i = 0; i < v; ++i) {
+			std::cout << i << " ";
+			AdjNode* temp = AdjacentNodes[i];
+			while (temp != NULL) {
+				std::cout << "-> " << temp->vertex << " ";
+				temp = temp->next;
+			}
+			std::cout << std::endl;
+		}
+	}
+
+	//---------------------  Member Functions  ---------------------
 
 	void addEdge(int source, int destination) {
 		AdjNode* node = new AdjNode(destination);
@@ -40,35 +60,39 @@ public:
 		addEdge(vk, destination);
 	}
 
-	// Function to print the graph
-	void printGraph() {
-		for (int i = 0; i < v; ++i) {
-			std::cout << i << " ";
-			AdjNode* temp = AdjacentNodes[i];
-			while (temp != NULL) {
-				std::cout << "-> " << temp->vertex << " ";
-				temp = temp->next;
+	void deleteVertex(int vertexToDelete)
+	{
+		// Iterate through all vertexes to find the one to delete.
+		for(int i = 0; i < 6; ++i)
+		{
+			AdjNode* Temp = AdjacentNodes[i];
+			if(i == vertexToDelete)
+			{
+				AdjacentNodes[i] = Temp->next;
+				Temp = AdjacentNodes[i];
 			}
-			std::cout << std::endl;
+
+			// Delete the vertex using the linked list
+			while(Temp != nullptr)
+			{
+				if (Temp->vertex == vertexToDelete)
+					break;
+
+				AdjNode* prev = Temp;
+				Temp = Temp->next;
+				if(Temp == nullptr)
+					continue;
+
+				prev->next = Temp->next;
+				Temp = nullptr;
+			}
 		}
 	}
 
+	// ---------- Getters ----------
+
+
+
+	// ---------- Checkers ----------
+
 };
-//
-//int main()
-//{
-//
-//	int V = 6;
-//	AdjacencyGraph AdjacentNodes(V);
-//	AdjacentNodes.addEdge(0, 1);
-//	AdjacentNodes.addEdge(0, 3);
-//	AdjacentNodes.addEdge(0, 4);
-//	AdjacentNodes.addEdge(1, 2);
-//	AdjacentNodes.addEdge(3, 2);
-//	AdjacentNodes.addEdge(4, 3);
-//
-//	std::cout << "Initial adjacency list" << std::endl;
-//	AdjacentNodes.printGraph();
-//
-//	return 0;
-//}

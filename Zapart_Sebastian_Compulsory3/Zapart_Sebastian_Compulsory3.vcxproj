@@ -23,6 +23,7 @@
     <ClInclude Include="GenericTreeDataStructure_list.h" />
     <ClInclude Include="GraphLibrary.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="Sebgraph.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />

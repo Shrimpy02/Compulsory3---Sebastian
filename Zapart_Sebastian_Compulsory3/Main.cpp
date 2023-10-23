@@ -142,16 +142,25 @@ void CompMain::TestGenericTree()
 
 void CompMain::TestAdjacencyGraph()
 {
+	printInt(AG_ptr->Graphes[0]->data);
 
-	AG_ptr->printGraph();
-	AG_ptr->addEdge(0,1);
-	AG_ptr->addEdge(0, 3);
-	AG_ptr->addEdge(0, 4);
-	AG_ptr->addEdge(1, 2);
-	AG_ptr->addEdge(3, 2);
-	AG_ptr->addEdge(4, 3);
-	AG_ptr->printGraph();
+	// create edge
+		// creats a new node linked to 
 
+
+
+	// ----------------------------------------
+	//AG_ptr->addEdge(0,1);
+	//AG_ptr->addEdge(0, 3);
+	//AG_ptr->addEdge(0, 4);
+	//AG_ptr->addEdge(1, 2);
+	//AG_ptr->addEdge(3, 2);
+	//AG_ptr->addEdge(4, 3);
+	//AG_ptr->printGraph();
+
+	//cout << endl;
+	//AG_ptr->deleteVertex(0);
+	//AG_ptr->printGraph();
 }
 
 void CompMain::printString(const std::string string)
