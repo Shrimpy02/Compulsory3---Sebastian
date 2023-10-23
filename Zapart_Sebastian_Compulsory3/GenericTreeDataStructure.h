@@ -225,7 +225,7 @@ public:
 		root->data = newData;
 	}
 
-	// ---------- Getters ----------
+	// ---------------------  Getters  ---------------------
 
 	/**
 	 * \brief Gets the root of the tree from any node.
@@ -312,7 +312,7 @@ public:
 		return root->data;
 	}
 
-	// ---------- Checkers ----------
+	// ---------------------  Checkers  ---------------------
 
 	/**
 	 * \brief Checks if the Tree index is empty, IE no trees.

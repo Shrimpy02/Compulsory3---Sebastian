@@ -18,16 +18,13 @@
     <ClInclude Include="Main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GraphLibrary.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GenericTreeDataStructure_list.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GenericTreeDataStructure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sebgraph.h">
+    <ClInclude Include="AdjacencyListGraph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

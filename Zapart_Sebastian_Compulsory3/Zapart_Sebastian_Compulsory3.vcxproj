@@ -19,11 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AdjacencyListGraph.h" />
     <ClInclude Include="GenericTreeDataStructure.h" />
     <ClInclude Include="GenericTreeDataStructure_list.h" />
-    <ClInclude Include="GraphLibrary.h" />
     <ClInclude Include="Main.h" />
-    <ClInclude Include="Sebgraph.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />

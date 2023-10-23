@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-#include "Sebgraph.h"
 #include "GenericTreeDataStructure.h"
+#include "AdjacencyListGraph.h"
 
 using namespace std;
 
@@ -15,9 +15,7 @@ public:
 
 	shared_ptr<GenericTree>	GT_ptr = make_shared<GenericTree>();
 
-	const int vertices = 3;
-
-	shared_ptr<sebgraph> AG_ptr = make_shared<sebgraph>(vertices);
+	shared_ptr<AdjacencyListGraph> AG_ptr = make_shared<AdjacencyListGraph>();
 
 	/**
 	 * \brief Tests the generic tree that uses lists.

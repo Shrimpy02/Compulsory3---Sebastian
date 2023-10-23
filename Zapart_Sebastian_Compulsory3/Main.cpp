@@ -142,31 +142,11 @@ void CompMain::TestGenericTree()
 
 void CompMain::TestAdjacencyGraph()
 {
-	//printInt(AG_ptr->Graphes[0]->data);
 
-	// create edge
-		// creats a new node linked to 
+	std::shared_ptr<AdjacencyListGraph::Node> node0 = AG_ptr->CreateNode(0, 100);
+	std::shared_ptr<AdjacencyListGraph::Node> node1 = AG_ptr->CreateNode(1, 200);
+	std::shared_ptr<AdjacencyListGraph::Node> node2 = AG_ptr->CreateNode(2, 300);
 
-
-
-	// ----------------------------------------
-	//AG_ptr->addEdge(0,1);
-	//AG_ptr->addEdge(0, 3);
-	//AG_ptr->addEdge(0, 4);
-	//AG_ptr->addEdge(1, 2);
-	//AG_ptr->addEdge(3, 2);
-	//AG_ptr->addEdge(4, 3);
-	//AG_ptr->printGraph();
-
-	//cout << endl;
-	//AG_ptr->deleteVertex(0);
-	//AG_ptr->printGraph();
-
-	// ----------------------------------------
-
-	std::shared_ptr<sebgraph::Node> node0 = AG_ptr->CreateNode(0, 100);
-	std::shared_ptr<sebgraph::Node> node1 = AG_ptr->CreateNode(1, 200);
-	std::shared_ptr<sebgraph::Node> node2 = AG_ptr->CreateNode(2, 300);
 
 	AG_ptr->AddEdge(node0, node1, 10);
 	AG_ptr->AddEdge(node0, node2, 30);
