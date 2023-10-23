@@ -10,11 +10,19 @@ using namespace std;
 class CompMain
 {
 public:
-
+	/**
+	 * \brief Class constructor.
+	 */
 	CompMain();
 
+	/**
+	 * \brief Smart pointer to the Generic tree class.
+	 */
 	shared_ptr<GenericTree>	GT_ptr = make_shared<GenericTree>();
 
+	/**
+	 * \brief Smart pointer to the AdjacencyListGraph class.
+	 */
 	shared_ptr<AdjacencyListGraph> AG_ptr = make_shared<AdjacencyListGraph>();
 
 	/**
@@ -25,14 +33,14 @@ public:
 	void TestAdjacencyGraph();
 
 	/**
-	 * \brief prints the given input
-	 * \param string the string to print
+	 * \brief Prints the given input.
+	 * \param string The string to print.
 	 */
 	void printString(const std::string string);
 
 	/**
-	 * \brief print the given input
-	 * \param number the int to print
+	 * \brief Print the given input.
+	 * \param number The int to print.
 	 */
 	void printInt(const int number);
 

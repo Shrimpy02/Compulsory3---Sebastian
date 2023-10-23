@@ -11,8 +11,74 @@ int main()
 
 CompMain::CompMain()
 {
-	//TestGenericTree();
-	TestAdjacencyGraph();
+	cout << "Witch Datastructure would you like to test?" << endl;
+	cout << "1. GenericTree" << endl;
+	cout << "2. AdjacencyListGraph" << endl;
+	cout << "1-2: ";
+	int choice = 0;
+	cin >> choice;
+
+	cout << endl;
+	cout << endl;
+
+	switch (choice)
+	{
+	case 0:
+		cout << endl;
+		cout << "Incorrect Data type" << endl;
+		cout << "Exit on Code " << choice << endl;
+
+		exit(choice);
+	case 1:
+		printString("GenericTree, function examples");
+		cout << endl;
+		TestGenericTree();
+
+		break;
+	case 2:
+		cout << "Adjacency List Graph, function examples" << endl;
+		cout << endl;
+		TestAdjacencyGraph();
+
+		break;
+	default:
+		cout << endl;
+		cout << "That input was not 1 or 2" << endl;
+		cout << endl;
+
+		exit(choice);
+	}
+	cout << endl;
+	cout << endl;
+	cout << "Do you want to try again?" << endl;
+	cout << "1. Yes" << endl;
+	cout << "2. No" << endl;
+	cout << "1-2: ";
+	cin >> choice;
+	cout << endl;
+
+	switch (choice)
+	{
+	case 0:
+		cout << endl;
+		cout << "Incorrect Data type" << endl;
+		cout << "Exit on Code " << choice << endl;
+
+		exit(choice);
+	case 1:
+		CompMain();
+
+		break;
+	case 2:
+		exit(choice);
+
+	default:
+		cout << endl;
+		cout << "That input was not 1 or 2" << endl;
+		cout << endl;
+
+		exit(choice);
+	}
 }
 
 void CompMain::TestGenericTree()
@@ -27,8 +93,7 @@ void CompMain::TestGenericTree()
 	*/
 
 
-	printString("GenericTree function examples");
-	std::cout << std::endl;
+
 	printString("---------------------------------");
 	std::cout << std::endl;
 	std::cout << std::endl;
@@ -135,6 +200,7 @@ void CompMain::TestGenericTree()
 	printString("DepthFirstPrint of tree with deleted node with data value '1':");
 	std::cout << std::endl;
 	GT_ptr->DepthFirstPrintTree(GT_ptr->Tree.front());
+
 	std::cout << std::endl;
 	std::cout << std::endl;
 	printString("---------------------------------");
@@ -142,17 +208,21 @@ void CompMain::TestGenericTree()
 
 void CompMain::TestAdjacencyGraph()
 {
+	printString("---------------------------------");
+	std::cout << std::endl;
+	std::cout << std::endl;
 
 	std::shared_ptr<AdjacencyListGraph::Node> node0 = AG_ptr->CreateNode(0, 100);
 	std::shared_ptr<AdjacencyListGraph::Node> node1 = AG_ptr->CreateNode(1, 200);
 	std::shared_ptr<AdjacencyListGraph::Node> node2 = AG_ptr->CreateNode(2, 300);
 
-
 	AG_ptr->AddEdge(node0, node1, 10);
 	AG_ptr->AddEdge(node0, node2, 30);
 	AG_ptr->printGraph();
 
-
+	std::cout << std::endl;
+	std::cout << std::endl;
+	printString("---------------------------------");
 }
 
 void CompMain::printString(const std::string string)
