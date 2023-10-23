@@ -4,10 +4,10 @@
 
 using namespace std;
 
-//int main()
-//{
-//	CompMain();
-//}
+int main()
+{
+	CompMain();
+}
 
 CompMain::CompMain()
 {
@@ -161,6 +161,18 @@ void CompMain::TestAdjacencyGraph()
 	//cout << endl;
 	//AG_ptr->deleteVertex(0);
 	//AG_ptr->printGraph();
+
+	// ----------------------------------------
+
+	std::shared_ptr<sebgraph::Node> node0 = AG_ptr->CreateNode(0, 100);
+	std::shared_ptr<sebgraph::Node> node1 = AG_ptr->CreateNode(1, 200);
+	std::shared_ptr<sebgraph::Node> node2 = AG_ptr->CreateNode(2, 300);
+
+	AG_ptr->AddEdge(node0, node1, 10);
+	AG_ptr->AddEdge(node0, node2, 30);
+	AG_ptr->printGraph();
+
+
 }
 
 void CompMain::printString(const std::string string)

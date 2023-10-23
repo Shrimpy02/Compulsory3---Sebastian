@@ -5,73 +5,86 @@
 class sebgraph
 {
 public:
-	sebgraph()
+
+	sebgraph(int NumNodes = 0)
 	{
-		
+		vertexes.resize(NumNodes);
 	}
 
-
-
-
-
-};
-
- struct Node
- {
- 	int id;
- 	int data;
-
-	Node(int _id, int _data) : id(_id), data(_data) {}
- };
-
- void AddEdge(std::vector<std::vector<std::pair<Node, int>>>& verts, Node& from, Node& to, int weight) {
-	 verts[from.id].push_back(std::make_pair(to, weight));
-	 verts[to.id].push_back(std::make_pair(from, weight));
- }
-
-void printGraph(std::vector<std::vector<std::pair<Node, int>>>& verts)
-{
-	for (int u = 0; u < verts.size(); u++)
+	struct Node
 	{
-		std::cout << "Node " << u << " makes an edge with:\n";
-		for (const auto& pair : verts[u])
-		{
-			const Node& v = pair.first;
-			int w = pair.second;
-			std::cout << "\tNode " << v.id << " with edge weight = " << w << "\n";
-		}
-		std::cout << std::endl;
+		int id;
+		int data;
+
+		Node(int _id, int _data) : id(_id), data(_data) {}
+	};
+
+	std::shared_ptr<Node> CreateNode(int nodeID,int nodeData)
+	{
+		std::shared_ptr<Node> newNode = std::make_shared<Node>(nodeID, nodeData);
+		nodes.push_back(newNode);
+		return newNode;
 	}
-}
 
-void printNodeData(std::vector<std::vector<std::pair<Node, int>>>& verts, int nodeID)
- {
-	for (int u = 0; u < verts.size(); u++)
+	void AddEdge(const std::shared_ptr<Node>& from, const std::shared_ptr<Node>& to, int weight) {
+		vertexes[from->id].push_back(std::make_pair(to, weight));
+		vertexes[to->id].push_back(std::make_pair(from, weight));
+	}
+
+	void printGraph()
 	{
-		for (const auto& pair : verts[u])
+		for (int u = 0; u < vertexes.size(); u++)
 		{
-			if(pair.first.id == nodeID)
+			std::cout << "Node " << u << " makes an edge with:\n";
+			for (const auto& pair : vertexes[u])
 			{
-				std::cout << "Node data is: " << pair.first.data << "\n";
+				const std::shared_ptr<Node>& v = pair.first;
+				int w = pair.second;
+				std::cout << "\tNode " << v->id << " with edge weight = " << w << "\n";
+			}
+			std::cout << std::endl;
+		}
+	}
+
+	void printNodeData(int nodeID)
+	{
+		for (int u = 0; u < vertexes.size(); u++)
+		{
+			for (const auto& pair : vertexes[u])
+			{
+				if (pair.first->id == nodeID)
+				{
+					std::cout << "Node data is: " << pair.first->data << "\n";
+				}
 			}
 		}
 	}
- }
 
-int main()
-{
-	Node Node0(0, 100);
-	Node Node1(1, 200);
-	Node Node2(2, 300);
 
-	std::vector<std::vector<std::pair<Node,int>>> vertexes(3);
+private:
+	std::vector<std::vector<std::pair<std::shared_ptr<Node>, int>>> vertexes;
+	std::vector<std::shared_ptr<Node>> nodes;
 
-	AddEdge(vertexes,Node0,Node1,10);
-	AddEdge(vertexes, Node0, Node2, 20);
-	
-	printGraph(vertexes);
 
-	printNodeData(vertexes, 1);
-
-	return 0;
 };
+
+
+
+// 
+//
+//int main()
+//{
+//	sebgraph graph(3);
+//
+//	sebgraph::Node Node0(0, 100);
+//	sebgraph::Node Node1(1, 200);
+//	sebgraph::Node Node2(2, 300);
+//
+//	graph.AddEdge(Node0, Node1, 10);
+//	graph.AddEdge(Node0, Node2, 20);
+//
+//	graph.printGraph();
+//	graph.printNodeData(1);
+//
+//	return 0;
+//};

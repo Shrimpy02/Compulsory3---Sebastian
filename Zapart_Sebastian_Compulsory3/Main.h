@@ -15,9 +15,9 @@ public:
 
 	shared_ptr<GenericTree>	GT_ptr = make_shared<GenericTree>();
 
-	const int vertices = 6;
+	const int vertices = 3;
 
-	shared_ptr<sebgraph> AG_ptr = make_shared<sebgraph>();
+	shared_ptr<sebgraph> AG_ptr = make_shared<sebgraph>(vertices);
 
 	/**
 	 * \brief Tests the generic tree that uses lists.
