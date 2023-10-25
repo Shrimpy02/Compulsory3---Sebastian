@@ -69,6 +69,7 @@ public:
 		Tree[0]->child[3]->child.push_back(CreateNode(8, Tree[0]->child[3]));
 		Tree[0]->child[3]->child.push_back(CreateNode(9, Tree[0]->child[3]));
 		Tree[0]->child[3]->child.push_back(CreateNode(10, Tree[0]->child[3]));
+
 	}
 
 	/**

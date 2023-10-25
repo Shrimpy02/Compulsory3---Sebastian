@@ -92,8 +92,6 @@ void CompMain::TestGenericTree()
 	*      5   6       7   8  9  10
 	*/
 
-
-
 	printString("---------------------------------");
 	std::cout << std::endl;
 	std::cout << std::endl;
@@ -208,19 +206,160 @@ void CompMain::TestGenericTree()
 
 void CompMain::TestAdjacencyGraph()
 {
+	/*		The Graph example
+	*                   
+	*			 0 - 1
+	*		   / | /
+	*		   | 2 - 3
+	*		    \   /
+	*			  4
+	*/
+
 	printString("---------------------------------");
 	std::cout << std::endl;
 	std::cout << std::endl;
 
+	// Create Test Graph
+	// Creating the nodes.
 	std::shared_ptr<AdjacencyListGraph::Node> node0 = AG_ptr->CreateNode(0, 100);
 	std::shared_ptr<AdjacencyListGraph::Node> node1 = AG_ptr->CreateNode(1, 200);
 	std::shared_ptr<AdjacencyListGraph::Node> node2 = AG_ptr->CreateNode(2, 300);
-
+	std::shared_ptr<AdjacencyListGraph::Node> node3 = AG_ptr->CreateNode(3, 400);
+	std::shared_ptr<AdjacencyListGraph::Node> node4 = AG_ptr->CreateNode(4, 500);
+	// Creating the edges
 	AG_ptr->AddEdge(node0, node1, 10);
-	AG_ptr->AddEdge(node0, node2, 30);
+	AG_ptr->AddEdge(node0, node2, 20);
+	AG_ptr->AddEdge(node0, node4, 30);
+	AG_ptr->AddEdge(node1, node2, 40);
+	AG_ptr->AddEdge(node2, node3, 50);
+	AG_ptr->AddEdge(node3, node4, 60);
+	// printing the graph
+	printString("Printed Graph:");
+	std::cout << std::endl;
 	AG_ptr->printGraph();
 
+	// ModifyData ----------
+	printString("Node 2 data:");
+	printInt(node1->data);
 	std::cout << std::endl;
+	printString("Modified Data of node 1 from 200 too 250:");
+	AG_ptr->ModifyData(node1, 250);
+	std::cout << std::endl;
+	printString("New node 2 data:");
+	printInt(node1->data);
+	std::cout << std::endl;
+
+	// DepthFirstPrint ----------
+	printString("Depth First Traversal of graph: ");
+	std::cout << std::endl;
+	std::vector<bool> visited(AG_ptr->GetAmountOfVertexes(), false);
+	AG_ptr->DepthTraversal(node0, visited);
+	std::cout << std::endl;
+
+	// BreadthFirstPrint ----------
+	std::cout << std::endl;
+	printString("Breadth First Traversal of graph: ");
+	std::cout << std::endl;
+	AG_ptr->BredthTraversal(node0);
+	std::cout << std::endl;
+
+	// ---------- Getters ----------
+
+	std::cout << std::endl;
+	printString("------ Getters ---------");
+	std::cout << std::endl;
+
+	// GetAmountOfVertexes ----------
+	std::cout << std::endl;
+	printString("Amount of Vertexes(Nodes):");
+	printInt(AG_ptr->GetAmountOfVertexes());
+	std::cout << std::endl;
+
+	// GetSize ----------
+	std::cout << std::endl;
+	//printString("Tree size as num Nodes:");
+	//printInt(GT_ptr->GetSize(GT_ptr->Tree.front()));
+	std::cout << std::endl;
+
+	// GetDepth ----------
+	std::cout << std::endl;
+	//printString("Tree depth:");
+	//printInt(GT_ptr->GetDepth(GT_ptr->Tree.front()));
+	std::cout << std::endl;
+
+	// GetNodeData ----------
+	std::cout << std::endl;
+	//printString("Get Node data of node 1:");
+	//printInt(GT_ptr->GetNodeData(GT_ptr->Tree.front()->child.front()));
+	std::cout << std::endl;
+
+	// GetChildren ----------
+	std::cout << std::endl;
+	//printString("Children of node with data value 1:");
+	//GT_ptr->testGetChildren(GT_ptr->GetChildren(GT_ptr->Tree.front()->child.front()));
+	std::cout << std::endl;
+
+	// GetParent ----------
+	std::cout << std::endl;
+	//GT_ptr->testGetParent(GT_ptr->Tree.front()->child.front()->child.front());
+	std::cout << std::endl;
+
+	// GetRoot ----------
+	std::cout << std::endl;
+	//GT_ptr->testGetRoot(GT_ptr->Tree.front());
+	std::cout << std::endl;
+
+	// ---------- Checkers ----------
+
+	std::cout << std::endl;
+	printString("------ Checkers ---------");
+	std::cout << std::endl;
+
+	// IsEmpty ----------
+	std::cout << std::endl;
+	//printString("checks if tree is Empty:");
+	//if (GT_ptr->IsEmpty())
+	//	printString("true");
+	//else
+	//	printString("false");
+	std::cout << std::endl;
+
+	// IsRoot ----------
+	std::cout << std::endl;
+	//printString("Checks if node with data value '1' Is Root:");
+	//if (GT_ptr->IsRoot(GT_ptr->Tree.front()->child.front()))
+	//	printString("true");
+	//else
+	//	printString("false");
+	std::cout << std::endl;
+
+	// IsLeaf ----------
+	std::cout << std::endl;
+	//printString("Checks if node with data value '11' Is Leaf:");
+	//if (GT_ptr->Isleaf(GT_ptr->Tree.front()->child.front()->child.front()))
+	//	printString("true");
+	//else
+	//	printString("false");
+	std::cout << std::endl;
+
+	// ---------- Delete function ----------
+
+	// Deleted Edge ----------
+	AG_ptr->DeleteEdge(node0,node2);
+	std::cout << std::endl;
+
+	printString("Printed graph edge between Node 0 and Node 2 has been deleted: ");
+	std::cout << std::endl;
+	AG_ptr->printGraph();
+
+	// Deleted Node ----------
+	AG_ptr->DeleteNode(node2);
+	std::cout << std::endl;
+
+	printString("Printed graph where Node 2 has been deleted: ");
+	std::cout << std::endl;
+	AG_ptr->printGraph();
+
 	std::cout << std::endl;
 	printString("---------------------------------");
 }
