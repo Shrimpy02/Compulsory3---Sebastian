@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <iostream>
 #include <vector>
 
@@ -38,8 +38,6 @@ public:
 	const int rootData = -1;
 
 	//---------------------  Test Functions  ---------------------
-
-
 	/**
 	 * \brief Creates a test tree using the constructed root
 	 */
@@ -109,6 +107,40 @@ public:
 	//---------------------  Member Functions  ---------------------
 
 	/**
+	 * \brief Function to init a new root for a new tree.
+	 */
+	void InitNewTree()
+	{
+		Tree.push_back(CreateNode(rootData, nullptr));
+	}
+
+	/**
+	 * \brief A function to generate a random general tree.
+	* \param root the root from witch to generate a new tree.
+	* \param maxDepth The max depth of the tree generated.
+	* \param currentDepth The current depth of the generated tree for recursion.
+	*/
+	void GenerateRandomTree(Node* root, int maxDepth, int currentDepth)
+	{
+		// Stop recursion when the maximum depth is reached.
+		if (currentDepth >= maxDepth) {
+			return;
+		}
+
+		int numChildren = std::rand() % 4; // Generate a random number of children (0 to 3 in this example).
+
+		for (int i = 0; i < numChildren; ++i) {
+
+			// Create a new child node and add it to the current root.
+			Node* child = CreateRandomNode(root);
+			root->child.push_back(child);
+
+			// Recursively generate the subtree for the child.
+			GenerateRandomTree(child, maxDepth, currentDepth + 1);
+		}
+	}
+
+	/**
 	 * \brief Create's a new node.
 	 * \param data Data the new Node is to hold.
 	 * \return returns the new node created.
@@ -117,6 +149,19 @@ public:
 	{
 		Node* NewNode = new Node();
 		NewNode->data = data;
+		NewNode->Parent = inputparent;
+		return NewNode;
+	}
+
+	/**
+	* \brief Create's a new node with random data.
+	* \return returns the new node created.
+	*/
+	Node* CreateRandomNode(Node* inputparent)
+	{
+		Node* NewNode = new Node();
+		// Generate a random data value (0 to 99).
+		NewNode->data = std::rand() % 100;
 		NewNode->Parent = inputparent;
 		return NewNode;
 	}
@@ -172,7 +217,7 @@ public:
 	 * \brief Traverses the tree from the given node in a depth first manor.
 	 * \param root The node it starts traversing from.
 	 */
-	void DepthFirstPrintTree(Node* root)
+	void DepthFirstPrintTree(Node* root, const std::string& prefix = "", bool isLast = true)
 	{
 		if (root == nullptr) return;
 		std::cout << root->data << " ";
